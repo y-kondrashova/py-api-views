@@ -9,6 +9,7 @@ from cinema.views import (
 
 urlpatterns = [
     path("genres/", GenreList.as_view(), name="genre-list"),
+    path("genres/<int:pk>/", GenreDetail.as_view(), name="genre-detail"),
     path("movies/", movie_list, name="movie-list"),
     path("movies/<int:pk>/", movie_detail, name="movie-detail"),
 ]
