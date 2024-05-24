@@ -60,3 +60,26 @@ class MovieSerializer(serializers.Serializer):
         instance.save()
 
         return instance
+
+
+class CinemaHallSerializer(serializers.Serializer):
+    id = serializers.IntegerField(read_only=True)
+    name = serializers.CharField(max_length=255)
+    rows = serializers.IntegerField()
+    seats_in_row = serializers.IntegerField()
+
+    def create(self, validated_data):
+        return CinemaHall.objects.create(**validated_data)
+
+    def update(self, instance, validated_data):
+        instance.name = validated_data.get(
+            "name", instance.name
+        )
+        instance.rows = validated_data.get(
+            "rows", instance.rows
+        )
+        instance.seats_in_rows = validated_data.get(
+            "seats_in_row", instance.seats_in_rows
+        )
+        instance.save()
+        return instance
