@@ -101,7 +101,11 @@ class GenreDetail(APIView):
 
     def patch(self, request, pk: int) -> Response:
         genre = self.get_object(pk=pk)
-        serializer = GenreSerializer(instance=genre, data=request.data, partial=True)
+        serializer = GenreSerializer(
+            instance=genre,
+            data=request.data,
+            partial=True
+        )
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_200_OK)
