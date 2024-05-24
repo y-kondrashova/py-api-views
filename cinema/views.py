@@ -51,6 +51,16 @@ class CinemaHallList(
     serializer_class = CinemaHallSerializer
 
 
+class CinemaHallDetail(
+    viewsets.GenericViewSet,
+    mixins.RetrieveModelMixin,
+    mixins.UpdateModelMixin,
+    mixins.DestroyModelMixin,
+):
+    queryset = CinemaHall.objects.all()
+    serializer_class = CinemaHallSerializer
+
+
 @api_view(["GET", "POST"])
 def movie_list(request):
     if request.method == "GET":
