@@ -25,6 +25,21 @@ class ActorList(
         return self.create(request, *args, **kwargs)
 
 
+class ActorDetail(
+    generics.GenericAPIView,
+    mixins.RetrieveModelMixin,
+    mixins.UpdateModelMixin,
+    mixins.DestroyModelMixin,
+):
+    def get(self, request, *args, **kwargs) -> Response:
+        return self.retrieve(request, *args, **kwargs)
+
+    def put(self, request, *args, **kwargs):
+        return self.update(request, *args, **kwargs)
+
+    def delete(self, request, *args, **kwargs):
+        return self.destroy(request, *args, **kwargs)
+
 
 @api_view(["GET", "POST"])
 def movie_list(request):
