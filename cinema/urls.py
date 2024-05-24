@@ -3,6 +3,7 @@ from django.urls import path
 from cinema.views import (
     ActorDetail,
     ActorList,
+    CinemaHallDetail,
     CinemaHallList,
     GenreDetail,
     GenreList,
@@ -17,6 +18,18 @@ urlpatterns = [
         "cinema-halls/",
         CinemaHallList.as_view(actions={"get": "list", "post": "create"}),
         name="cinema-hall-list"
+    ),
+    path(
+        "cinema-halls/<int:pk>/",
+        CinemaHallDetail.as_view(
+            actions={
+                "get": "retrieve",
+                "put": "update",
+                "patch": "partial_update",
+                "delete": "destroy"
+            }
+        ),
+        name="cinema-hall-detail"
     ),
     path("genres/", GenreList.as_view(), name="genre-list"),
     path("genres/<int:pk>/", GenreDetail.as_view(), name="genre-detail"),
